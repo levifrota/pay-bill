@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "pay-bill",
+    "name": "Calculadora de contas",
     "slug": "pay-bill",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.levifrota.paybill"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +32,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7799f712-e283-4d29-9d64-bd9ad4cd8cb2"
+      }
     }
   }
 }

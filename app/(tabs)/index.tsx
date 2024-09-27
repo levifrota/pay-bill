@@ -137,6 +137,22 @@ export default function App() {
     setLogs([]);
   };
 
+  const handleTotalChange = (text: string) => {
+    // Remove qualquer caractere que não seja número, ponto ou vírgula
+    let filteredText = text.replace(/[^0-9.,]/g, '');
+
+    // Substituir todas as vírgulas por ponto
+    filteredText = filteredText.replace(/,/g, '.');
+
+    // Impede que mais de um ponto seja adicionado
+    const pointCount = (filteredText.match(/\./g) || []).length;
+    if (pointCount > 1) {
+      return; // Impede a mudança se já houver mais de um ponto
+    }
+
+    setTotal(filteredText);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Calculadora de Divisão de Contas</Text>
@@ -152,8 +168,8 @@ export default function App() {
         style={styles.input}
         placeholder='Valor total da conta'
         keyboardType='numeric'
-        value={total ? total.toString() : ''}
-        onChangeText={(text) => setTotal(Number(text))}
+        value={total}
+        onChangeText={handleTotalChange}
       />
 
       <TextInput
@@ -206,7 +222,7 @@ export default function App() {
         renderItem={({ item }) => (
           <View style={styles.logItem}>
             <Text>Conta: {item.billName}</Text>
-            <Text>Total: R$ {item.total.toFixed(2)}</Text>
+<Text>Total: R$ {item.total ? parseFloat(item.total).toFixed(2) : '0.00'}</Text>
             {item.people.map((p, i) => (
               <Text key={i}>
                 {p.name}: R$ {p.value.toFixed(2)}
